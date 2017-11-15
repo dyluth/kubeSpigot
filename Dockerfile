@@ -24,7 +24,10 @@ RUN apt-get update &&\
     rm craftbukkit-1.12.jar &&\
     rm -r minecraft &&\
     apt-get purge -y --autoremove git wget
+COPY spigot-1.12.2.jar /
 RUN echo "eula=true" > eula.txt &&\
     mkdir plugins
+COPY server.properties /
+COPY bukkit.yml /
 CMD java -Xms512m -Xmx1024m -jar spigot-1.12.jar nogui
 EXPOSE 25565
