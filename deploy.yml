@@ -12,6 +12,17 @@ spec:
       containers:
       - name: spigot
         image: registry.eu-gb.bluemix.net/some_registry/kube_spigot112
+        volumeMounts:
+        - mountPath: /backup
+          name: syncdata
+      - name: dropbox
+        image: registry.eu-gb.bluemix.net/some_registry/dropbox
+        volumeMounts:
+        - mountPath: /root/Dropbox/minecraft/backup/
+          name: syncdata
+      volumes:
+      - name: syncdata
+        emptyDir: {} 
 ---
 apiVersion: v1
 kind: Service
